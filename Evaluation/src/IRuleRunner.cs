@@ -1,7 +1,7 @@
-﻿using evaluation_chain.Evaluation.InternalUtils;
+﻿using Evaluation.Internal;
 
 
-namespace evaluation_chain.Evaluation;
+namespace Evaluation;
 
 public interface IRuleRunner<TEvaluation> where TEvaluation : struct, IEvaluator
 {
