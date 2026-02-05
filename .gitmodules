@@ -1,0 +1,3 @@
+[submodule "gitModules/view-of"]
+	path = gitModules/view-of
+	url = https://github.com/greg-lsk/view-of
