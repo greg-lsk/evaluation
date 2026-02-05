@@ -1,4 +1,4 @@
-﻿namespace Evaluation;
+﻿namespace Evaluation.Internal;
 
 internal enum EvaluationState
 {
