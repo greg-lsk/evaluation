@@ -9,6 +9,9 @@ public class LifecycleTests
     public static IEnumerable<object[]> ValidInitializedStates => EvaluationStates.ValidInitializedStates;
     public static IEnumerable<object[]> ValidTerminationTransitions => EvaluationStates.ValidTerminationTransitions;
 
+    public static IEnumerable<object[]> StateResolutionForUninitializedEvaluators => EvaluationStates.ResolvedStatesForUninitializedEvaluators;
+    public static IEnumerable<object[]> ResolvedStatesForInitializedEvaluators => EvaluationStates.ResolvedStatesForInitializedEvaluators;
+
 
     [Fact]
     internal void Create_Returns_AnInstance_WithUninitializedState()
@@ -52,5 +55,30 @@ public class LifecycleTests
         var terminatedEvaluator = updatedEvaluator.Terminate() as IEvaluationStateHandler<Evaluator>;
 
         Assert.Equal(expectedState, terminatedEvaluator.State);
+    }
+
+
+    [Theory]
+    [MemberData(nameof(StateResolutionForUninitializedEvaluators))]
+    internal void DetermineNextState_ReturnsCorrectly_ForUninitializedEvaluators((bool CheckResult, Operation Operation, EvaluationState ExpectedState) data)
+    {
+        var evaluator = IEvaluationStateHandler<Evaluator>.Create() as IEvaluationStateHandler<Evaluator>;
+
+        var state = evaluator.DetermineNextState(data.Operation, data.CheckResult);
+
+        Assert.Equal(data.ExpectedState, state);
+    }
+
+    [Theory]
+    [MemberData(nameof(ResolvedStatesForInitializedEvaluators))]
+    internal void DetermineNextState_ReturnsCorrectly_ForInitializedEvaluators(
+        (bool CheckResult, Operation Operation, EvaluationState CurrectState, EvaluationState ExpectedState) data)
+    {
+        var evaluator = IEvaluationStateHandler<Evaluator>.Create() as IEvaluationStateHandler<Evaluator>;
+        var updatedEvaluator = evaluator.WithState(data.CurrectState) as IEvaluationStateHandler<Evaluator>;
+
+        var state = updatedEvaluator.DetermineNextState(data.Operation, data.CheckResult);
+
+        Assert.Equal(data.ExpectedState, state);
     }
 }
