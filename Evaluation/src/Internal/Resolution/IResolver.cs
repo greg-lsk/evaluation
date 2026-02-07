@@ -2,9 +2,9 @@
 
 internal interface IResolver
 {
-    public static bool BooleanResolution(EvaluationState currentState, bool evaluatedCheckResult, Operation operation, bool currentResult)
+    public static bool BooleanResolution(bool evaluatedCheckResult, Operation operation, bool currentResult)
     {
-        return !currentState.IsInitialized() ? evaluatedCheckResult : operation switch
+        return operation switch
         {
             Operation.Or =>   evaluatedCheckResult || currentResult,
             Operation.And =>  evaluatedCheckResult && currentResult,

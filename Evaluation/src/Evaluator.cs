@@ -27,7 +27,11 @@ public readonly struct Evaluator : IEvaluationStateHandler<Evaluator>
 
     EvaluationState IEvaluationStateHandler<Evaluator>.DetermineNextState(Operation operation, bool evaluatedCheckResult)
     {
-        var resolutionResult = IResolver.BooleanResolution(_state, evaluatedCheckResult, operation, Result);
+        var resolutionResult = _state.IsInitialized() switch
+        {
+            true =>  IResolver.BooleanResolution(evaluatedCheckResult, operation, Result),
+            false => evaluatedCheckResult
+        };
         return IResolver.StateResolution(resolutionResult, operation);
     }
 }

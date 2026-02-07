@@ -7,33 +7,19 @@ internal class ResolutionData
 {
     internal static IEnumerable<object[]> BooleanResolutions =
     [
-        [(EvaluationState.Uninitialized, CheckResult:true, Operation.Or,   currentResult:true,  ResolvesTo:true)],
-        [(EvaluationState.Uninitialized, CheckResult:true, Operation.Or,   currentResult:false, ResolvesTo:true)],
-        [(EvaluationState.Uninitialized, CheckResult:true, Operation.And,  currentResult:true,  ResolvesTo:true)],
-        [(EvaluationState.Uninitialized, CheckResult:true, Operation.And,  currentResult:false, ResolvesTo:true)],
-        [(EvaluationState.Uninitialized, CheckResult:true, Operation.Must, currentResult:true,  ResolvesTo:true)],
-        [(EvaluationState.Uninitialized, CheckResult:true, Operation.Must, currentResult:false, ResolvesTo:true)],
+        [(CheckResult: true, Operation.Or,   CurrentResult: true,  ResolvesTo: true || true)],
+        [(CheckResult: true, Operation.Or,   CurrentResult: false, ResolvesTo: true || false)],
+        [(CheckResult: true, Operation.And,  CurrentResult: true,  ResolvesTo: true && true)],
+        [(CheckResult: true, Operation.And,  CurrentResult: false, ResolvesTo: true && false)],
+        [(CheckResult: true, Operation.Must, CurrentResult: true,  ResolvesTo: true && true)],
+        [(CheckResult: true, Operation.Must, CurrentResult: false, ResolvesTo: true && false)],
 
-        [(EvaluationState.Uninitialized, CheckResult:false, Operation.Or,   currentResult:true,  ResolvesTo:false)],
-        [(EvaluationState.Uninitialized, CheckResult:false, Operation.Or,   currentResult:false, ResolvesTo:false)],
-        [(EvaluationState.Uninitialized, CheckResult:false, Operation.And,  currentResult:true,  ResolvesTo:false)],
-        [(EvaluationState.Uninitialized, CheckResult:false, Operation.And,  currentResult:false, ResolvesTo:false)],
-        [(EvaluationState.Uninitialized, CheckResult:false, Operation.Must, currentResult:true,  ResolvesTo:false)],
-        [(EvaluationState.Uninitialized, CheckResult:false, Operation.Must, currentResult:false, ResolvesTo:false)],
-
-        [(EvaluationState.Pending | EvaluationState.True, CheckResult:true, Operation.Or,   currentResult:true,  ResolvesTo:true || true)],
-        [(EvaluationState.Pending | EvaluationState.True, CheckResult:true, Operation.Or,   currentResult:false, ResolvesTo:true || false)],
-        [(EvaluationState.Pending | EvaluationState.True, CheckResult:true, Operation.And,  currentResult:true,  ResolvesTo:true && true)],
-        [(EvaluationState.Pending | EvaluationState.True, CheckResult:true, Operation.And,  currentResult:false, ResolvesTo:true && false)],
-        [(EvaluationState.Pending | EvaluationState.True, CheckResult:true, Operation.Must, currentResult:true,  ResolvesTo:true && true)],
-        [(EvaluationState.Pending | EvaluationState.True, CheckResult:true, Operation.Must, currentResult:false, ResolvesTo:true && false)],
-
-        [(EvaluationState.Pending | EvaluationState.False, CheckResult:false, Operation.Or,   currentResult:true,  ResolvesTo:false || true)],
-        [(EvaluationState.Pending | EvaluationState.False, CheckResult:false, Operation.Or,   currentResult:false, ResolvesTo:false || false)],
-        [(EvaluationState.Pending | EvaluationState.False, CheckResult:false, Operation.And,  currentResult:true,  ResolvesTo:false && true)],
-        [(EvaluationState.Pending | EvaluationState.False, CheckResult:false, Operation.And,  currentResult:false, ResolvesTo:false && false)],
-        [(EvaluationState.Pending | EvaluationState.False, CheckResult:false, Operation.Must, currentResult:true,  ResolvesTo:false && true)],
-        [(EvaluationState.Pending | EvaluationState.False, CheckResult:false, Operation.Must, currentResult:false, ResolvesTo:false && false)],
+        [(CheckResult: false, Operation.Or,   CurrentResult: true,  ResolvesTo: false || true)],
+        [(CheckResult: false, Operation.Or,   CurrentResult: false, ResolvesTo: false || false)],
+        [(CheckResult: false, Operation.And,  CurrentResult: true,  ResolvesTo: false && true)],
+        [(CheckResult: false, Operation.And,  CurrentResult: false, ResolvesTo: false && false)],
+        [(CheckResult: false, Operation.Must, CurrentResult: true,  ResolvesTo: false && true)],
+        [(CheckResult: false, Operation.Must, CurrentResult: false, ResolvesTo: false && false)]
     ];
 
     internal static IEnumerable<object[]> StateResolutions =
