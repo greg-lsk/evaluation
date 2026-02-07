@@ -4,7 +4,7 @@ internal interface IResolver
 {
     public static bool BooleanResolution(EvaluationState currentState, bool evaluatedCheckResult, Operation operation, bool currentResult)
     {
-        return !currentState.IsInitialized() ? currentResult : operation switch
+        return !currentState.IsInitialized() ? evaluatedCheckResult : operation switch
         {
             Operation.Or =>   evaluatedCheckResult || currentResult,
             Operation.And =>  evaluatedCheckResult && currentResult,
