@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Evaluation/Evaluation.csproj" />
+  <Project Path="EvaluationTests/EvaluationTests.csproj" Id="d4d67e94-73b0-4cfc-9d80-75a1688b3485" />
   <Project Path="gitModules/view-of/View/View.csproj" />
 </Solution>
