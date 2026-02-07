@@ -3,8 +3,9 @@
 
 namespace Evaluation;
 
-public interface IEvaluationStateHandler<T> where T : struct, IEvaluator
+public interface IEvaluationStateHandler<T> where T : struct
 {
+    internal bool Result { get; }
     internal T Terminate();
     internal T WithState(EvaluationState state);
 
