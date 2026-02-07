@@ -1,7 +1,7 @@
 ﻿using Evaluation.Internal;
 
 
-namespace Evaluation.Tests.IEvaluationStateHandlerTests.Data;
+namespace Evaluation.Tests.IEvaluationStateHandler.Data;
 
 internal class EvaluationStates
 {

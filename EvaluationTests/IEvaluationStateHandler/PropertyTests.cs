@@ -1,8 +1,8 @@
 ﻿using Evaluation.Internal;
-using Evaluation.Tests.IEvaluationStateHandlerTests.Data;
+using Evaluation.Tests.IEvaluationStateHandler.Data;
 
 
-namespace Evaluation.Tests.IEvaluationStateHandlerTests;
+namespace Evaluation.Tests.IEvaluationStateHandler;
 
 public class PropertyTests
 {
