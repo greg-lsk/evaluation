@@ -1,0 +1,43 @@
+﻿using Evaluation.Internal;
+using Evaluation.Tests.IEvaluationStateHandlerTests.Data;
+
+
+namespace Evaluation.Tests.IEvaluationStateHandlerTests;
+
+public class PropertyTests
+{
+    public static IEnumerable<object[]> TrueYieldingStates => EvaluationStates.StatesThatYieldTrueResult;
+    public static IEnumerable<object[]> FalseYieldingStates => EvaluationStates.StatesThatYieldFalseResult;
+    public static IEnumerable<object[]> DeterminedYieldingStates => EvaluationStates.StatesThatMakeEvaluationDetermined; 
+
+
+    [Theory]
+    [MemberData(nameof(TrueYieldingStates))]
+    internal void Result_YieldsTrue_Correctly(EvaluationState state)
+    {
+        var evaluator = IEvaluationStateHandler<Evaluator>.Create() as IEvaluationStateHandler<Evaluator>;
+        var updatedEvaluator = evaluator.WithState(state) as IEvaluationStateHandler<Evaluator>;
+
+        Assert.True(updatedEvaluator.Result);
+    }
+
+    [Theory]
+    [MemberData(nameof(FalseYieldingStates))]
+    internal void Result_YieldsFalse_Correctly(EvaluationState state)
+    {
+        var evaluator = IEvaluationStateHandler<Evaluator>.Create() as IEvaluationStateHandler<Evaluator>;
+        var updatedEvaluator = evaluator.WithState(state) as IEvaluationStateHandler<Evaluator>;
+
+        Assert.False(updatedEvaluator.Result);
+    }
+
+    [Theory]
+    [MemberData(nameof(DeterminedYieldingStates))]
+    internal void Determined_IsYielded_Correctly(EvaluationState state)
+    {
+        var evaluator = IEvaluationStateHandler<Evaluator>.Create() as IEvaluationStateHandler<Evaluator>;
+        var updatedEvaluator = evaluator.WithState(state) as IEvaluationStateHandler<Evaluator>;
+
+        Assert.True(updatedEvaluator.IsDetermined);
+    }
+}
