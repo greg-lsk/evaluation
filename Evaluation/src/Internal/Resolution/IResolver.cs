@@ -1,7 +1,4 @@
-﻿using Evaluation.Internal;
-
-
-namespace Evaluation.src.Internal.Resolution;
+﻿namespace Evaluation.Internal.Resolution;
 
 internal interface IResolver
 {

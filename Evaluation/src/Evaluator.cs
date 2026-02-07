@@ -1,5 +1,5 @@
 ﻿using Evaluation.Internal;
-using Evaluation.src.Internal.Resolution;
+using Evaluation.Internal.Resolution;
 
 
 namespace Evaluation;
