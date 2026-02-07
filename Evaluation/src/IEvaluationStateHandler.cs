@@ -9,6 +9,7 @@ public interface IEvaluationStateHandler<T> where T : struct
     internal bool IsDetermined { get; }
     internal EvaluationState State { get; }
 
+    internal static T Create() => new();
     internal T Terminate();
     internal T WithState(EvaluationState state);
 
