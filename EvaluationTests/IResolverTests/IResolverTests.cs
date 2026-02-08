@@ -1,5 +1,4 @@
-﻿using Evaluation.Internal;
-using Evaluation.Internal.Resolution;
+﻿using Evaluation.Internal.Resolution;
 using Evaluation.Tests.IResolverTests.Data;
 
 

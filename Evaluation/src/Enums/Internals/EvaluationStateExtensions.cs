@@ -1,4 +1,4 @@
-﻿namespace Evaluation.Internal;
+﻿namespace Evaluation.Enums.Internals;
 
 internal static class EvaluationStateExtensions
 {

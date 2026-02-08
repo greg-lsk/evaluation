@@ -1,7 +1,4 @@
-﻿using Evaluation.Internal;
-
-
-namespace Evaluation;
+﻿namespace Evaluation;
 
 public interface IEvaluationStateHandler<T> where T : struct
 {

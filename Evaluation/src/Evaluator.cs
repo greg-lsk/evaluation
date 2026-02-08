@@ -1,4 +1,4 @@
-﻿using Evaluation.Internal;
+﻿using Evaluation.Enums.Internals;
 using Evaluation.Internal.Resolution;
 
 
