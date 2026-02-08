@@ -1,7 +1,4 @@
-﻿using View;
-
-
-namespace Evaluation.Reporting.Internals;
+﻿namespace Evaluation.Reporting.Internals;
 
 internal readonly struct Assessment : IAssessment
 {
