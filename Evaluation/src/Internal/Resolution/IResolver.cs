@@ -7,7 +7,7 @@ internal interface IResolver
         return checkResult is false && operation is Operation.Must;
     }
 
-    public static bool BooleanResolution(bool checkResult, Operation operation, bool currentResult)
+    public static bool Resolve(bool checkResult, Operation operation, bool currentResult)
     {
         return operation switch
         {

@@ -55,14 +55,14 @@ internal class EvaluationStates
         [(CheckResult: true, Operation.Or,   CurrentResult: EvaluationState.True,  ExpectedState: EvaluationState.True | EvaluationState.Pending)],
         [(CheckResult: true, Operation.Or,   CurrentResult: EvaluationState.False, ExpectedState: EvaluationState.True | EvaluationState.Pending)],
         [(CheckResult: true, Operation.And,  CurrentResult: EvaluationState.True,  ExpectedState: EvaluationState.True | EvaluationState.Pending)],
-        [(CheckResult: true, Operation.And,  CurrentResult: EvaluationState.False, ExpectedState: EvaluationState.False| EvaluationState.Pending)],
+        [(CheckResult: true, Operation.And,  CurrentResult: EvaluationState.False, ExpectedState: EvaluationState.False | EvaluationState.Pending)],
         [(CheckResult: true, Operation.Must, CurrentResult: EvaluationState.True,  ExpectedState: EvaluationState.True | EvaluationState.Pending)],
         [(CheckResult: true, Operation.Must, CurrentResult: EvaluationState.False, ExpectedState: EvaluationState.False | EvaluationState.Pending)],
 
         [(CheckResult: false, Operation.Or,   CurrentResult: EvaluationState.True,  ExpectedState: EvaluationState.True | EvaluationState.Pending)],
         [(CheckResult: false, Operation.Or,   CurrentResult: EvaluationState.False, ExpectedState: EvaluationState.False | EvaluationState.Pending)],
         [(CheckResult: false, Operation.And,  CurrentResult: EvaluationState.True,  ExpectedState: EvaluationState.False | EvaluationState.Pending)],
-        [(CheckResult: false, Operation.And,  CurrentResult: EvaluationState.False, ExpectedState: EvaluationState.False| EvaluationState.Pending)],
+        [(CheckResult: false, Operation.And,  CurrentResult: EvaluationState.False, ExpectedState: EvaluationState.False | EvaluationState.Pending)],
         [(CheckResult: false, Operation.Must, CurrentResult: EvaluationState.True,  ExpectedState: EvaluationState.False | EvaluationState.Determined)],
         [(CheckResult: false, Operation.Must, CurrentResult: EvaluationState.False, ExpectedState: EvaluationState.False | EvaluationState.Determined)]
     ];

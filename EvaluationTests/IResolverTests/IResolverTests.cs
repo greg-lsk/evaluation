@@ -14,7 +14,7 @@ public class IResolverTests
     [MemberData(nameof(BooleanResolutions))]
     internal void BooleanResolution_ResolvesCorrectly((bool CheckResult, Operation Operation, bool CurrentResult, bool ExpectedResolution) data)
     {
-        var result = IResolver.BooleanResolution(data.CheckResult, data.Operation, data.CurrentResult);
+        var result = IResolver.Resolve(data.CheckResult, data.Operation, data.CurrentResult);
 
         Assert.Equal(data.ExpectedResolution, result);
     }
