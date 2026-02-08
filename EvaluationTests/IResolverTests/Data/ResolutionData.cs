@@ -21,15 +21,4 @@ internal class ResolutionData
         [(CheckResult: false, Operation.Must, CurrentResult: true,  ResolvesTo: false && true)],
         [(CheckResult: false, Operation.Must, CurrentResult: false, ResolvesTo: false && false)]
     ];
-
-    internal static IEnumerable<object[]> StateResolutions =
-    [
-        [(Operation.Or,   BooleanResolutionResult:true, Yields:EvaluationState.True | EvaluationState.Pending)],
-        [(Operation.And,  BooleanResolutionResult:true, Yields:EvaluationState.True | EvaluationState.Pending)],
-        [(Operation.Must, BooleanResolutionResult:true, Yields:EvaluationState.True | EvaluationState.Pending)],
-
-        [(Operation.Or,   BooleanResolutionResult:false, Yields:EvaluationState.False | EvaluationState.Pending)],
-        [(Operation.And,  BooleanResolutionResult:false, Yields:EvaluationState.False | EvaluationState.Pending)],
-        [(Operation.Must, BooleanResolutionResult:false, Yields:EvaluationState.False | EvaluationState.Determined)]
-    ];
 }

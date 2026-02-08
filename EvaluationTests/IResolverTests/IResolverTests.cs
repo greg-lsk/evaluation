@@ -8,7 +8,6 @@ namespace Evaluation.Tests.IResolverTests;
 public class IResolverTests
 {
     public static IEnumerable<object[]> BooleanResolutions => ResolutionData.BooleanResolutions;
-    public static IEnumerable<object[]> StateResolutions => ResolutionData.StateResolutions;
 
 
     [Theory]
@@ -18,14 +17,5 @@ public class IResolverTests
         var result = IResolver.BooleanResolution(data.CheckResult, data.Operation, data.CurrentResult);
 
         Assert.Equal(data.ExpectedResolution, result);
-    }
-
-    [Theory]
-    [MemberData(nameof(StateResolutions))]
-    internal void StateResolution_ResolvesCorrectly((Operation Operation, bool BooleanResolutionResult, EvaluationState ExpectedState) data)
-    {
-        var yieldedState = IResolver.StateResolution(data.BooleanResolutionResult, data.Operation);
-
-        Assert.Equal(data.ExpectedState, yieldedState);
     }
 }

@@ -2,28 +2,19 @@
 
 internal interface IResolver
 {
-    public static bool BooleanResolution(bool evaluatedCheckResult, Operation operation, bool currentResult)
+    public static bool EvaluationBecomesDetermined(bool checkResult, Operation operation)
+    {
+        return checkResult is false && operation is Operation.Must;
+    }
+
+    public static bool BooleanResolution(bool checkResult, Operation operation, bool currentResult)
     {
         return operation switch
         {
-            Operation.Or =>   evaluatedCheckResult || currentResult,
-            Operation.And =>  evaluatedCheckResult && currentResult,
-            Operation.Must => evaluatedCheckResult && currentResult,
+            Operation.Or =>   checkResult || currentResult,
+            Operation.And =>  checkResult && currentResult,
+            Operation.Must => checkResult && currentResult,
             _ => throw new ArgumentException("PlaceholderMessage::[unexpected operation type]")
-        };
-    }
-
-    public static EvaluationState StateResolution(bool booleanResolutionResult, Operation operation)
-    {        
-        return (operation, booleanResolutionResult) switch
-        {
-            (_, true) => EvaluationState.True | EvaluationState.Pending,
-
-            (Operation.Or, false) =>   EvaluationState.False | EvaluationState.Pending,
-            (Operation.And, false) =>  EvaluationState.False | EvaluationState.Pending,
-            (Operation.Must, false) => EvaluationState.False | EvaluationState.Determined,
-
-            _ => throw new ArgumentException("unexpected operation type")
         };
     }
 }
