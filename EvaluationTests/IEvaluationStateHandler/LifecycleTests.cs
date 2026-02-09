@@ -1,5 +1,6 @@
 ﻿using Evaluation.Enums.Internals;
 using Evaluation.Tests.Common.Fixtures;
+using Evaluation.Tests.IEvaluationStateHandler.Data;
 using Evaluation.Tests.IEvaluationStateHandler.Internals;
 
 
@@ -18,7 +19,7 @@ public class LifecycleTests(EvaluationFactoryFixture<Evaluation> _evaluationFact
 
 
     [Theory]
-    [MemberData(nameof(ValidInitializedStates))]
+    [ClassData(typeof(StatesOfInitializedEvaluation))]
     internal void WithState_MakesState_Initialized(EvaluationState state)
     {
         var evaluation = _evaluationFactory.CreateUninitialized()
@@ -28,7 +29,7 @@ public class LifecycleTests(EvaluationFactoryFixture<Evaluation> _evaluationFact
     }
 
     [Theory]
-    [MemberData(nameof(ValidInitializedStates))]
+    [ClassData(typeof(StatesOfInitializedEvaluation))]
     internal void WithState_UpdatesStateCorrectly(EvaluationState state)
     {
         var evaluation = _evaluationFactory.CreateUninitialized()
@@ -39,13 +40,13 @@ public class LifecycleTests(EvaluationFactoryFixture<Evaluation> _evaluationFact
 
 
     [Theory]
-    [MemberData(nameof(ValidTerminationTransitions))]
-    internal void Terminate_TransitionsState_ToAppropriateDetermined(EvaluationState currectState, EvaluationState expectedState)
+    [ClassData(typeof(PendingToDeterminedMapping))]
+    internal void Terminate_TransitionsState_ToAppropriateDetermined((EvaluationState Currect, EvaluationState AppropriateDetermined) stateMap)
     {
-        var evaluation = _evaluationFactory.CreateWithState(currectState)
+        var evaluation = _evaluationFactory.CreateWithState(stateMap.Currect)
                                            .Terminate() as IEvaluationStateHandler<Evaluation>;
 
-        Assert.Equal(expectedState, evaluation.State);
+        Assert.Equal(stateMap.AppropriateDetermined, evaluation.State);
     }
 
 

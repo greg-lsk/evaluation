@@ -2,21 +2,6 @@
 
 internal class EvaluationStates
 {
-    internal static IEnumerable<object[]> ValidInitializedStates =>
-    [
-        [EvaluationState.True | EvaluationState.Pending],
-        [EvaluationState.True | EvaluationState.Determined],
-
-        [EvaluationState.False | EvaluationState.Pending],
-        [EvaluationState.False | EvaluationState.Determined],
-    ];
-
-    internal static IEnumerable<object[]> ValidTerminationTransitions =>
-    [
-        [EvaluationState.True | EvaluationState.Pending, EvaluationState.True | EvaluationState.Determined],
-        [EvaluationState.False | EvaluationState.Pending, EvaluationState.False | EvaluationState.Determined]
-    ];
-
     internal static IEnumerable<object[]> ResolvedStatesForUninitializedEvaluations =>
     [
         [(CheckResult: true, Operation.Or,   ExpectedState: EvaluationState.True | EvaluationState.Pending)],
