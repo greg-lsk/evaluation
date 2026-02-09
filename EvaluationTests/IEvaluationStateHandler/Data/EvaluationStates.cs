@@ -36,7 +36,7 @@ internal class EvaluationStates
         [EvaluationState.False | EvaluationState.Pending, EvaluationState.False | EvaluationState.Determined]
     ];
 
-    internal static IEnumerable<object[]> ResolvedStatesForUninitializedEvaluators =>
+    internal static IEnumerable<object[]> ResolvedStatesForUninitializedEvaluations =>
     [
         [(CheckResult: true, Operation.Or,   ExpectedState: EvaluationState.True | EvaluationState.Pending)],
         [(CheckResult: true, Operation.And,  ExpectedState: EvaluationState.True | EvaluationState.Pending)],
