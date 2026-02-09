@@ -1,42 +1,27 @@
-﻿using Evaluation.Tests.IEvaluationStateHandler.Data;
+﻿using Evaluation.Tests.Common.Fixtures;
+using Evaluation.Tests.IEvaluationStateHandler.Data;
 
 
 namespace Evaluation.Tests.IEvaluationStateHandler;
 
-public class PropertyTests
+public class PropertyTests(EvaluationFactoryFixture<Evaluation> evaluationFactory) 
+    : IClassFixture<EvaluationFactoryFixture<Evaluation>>
 {
-    public static IEnumerable<object[]> TrueYieldingStates => EvaluationStates.StatesThatYieldTrueResult;
-    public static IEnumerable<object[]> FalseYieldingStates => EvaluationStates.StatesThatYieldFalseResult;
-    public static IEnumerable<object[]> DeterminedYieldingStates => EvaluationStates.StatesThatMakeEvaluationDetermined; 
-
-
     [Theory]
-    [MemberData(nameof(TrueYieldingStates))]
-    internal void Result_YieldsTrue_Correctly(EvaluationState state)
+    [ClassData(typeof(StateToResultMapping))]
+    internal void Result_YieldsCorrectly((EvaluationState State, bool YieldsResult) data)
     {
-        var evaluator = IEvaluationStateHandler<Evaluation>.Create() as IEvaluationStateHandler<Evaluation>;
-        var updatedEvaluator = evaluator.WithState(state) as IEvaluationStateHandler<Evaluation>;
+        var evaluator = evaluationFactory.CreateWithState(data.State);
 
-        Assert.True(updatedEvaluator.Result);
+        Assert.Equal(data.YieldsResult, evaluator.Result);
     }
 
     [Theory]
-    [MemberData(nameof(FalseYieldingStates))]
-    internal void Result_YieldsFalse_Correctly(EvaluationState state)
-    {
-        var evaluator = IEvaluationStateHandler<Evaluation>.Create() as IEvaluationStateHandler<Evaluation>;
-        var updatedEvaluator = evaluator.WithState(state) as IEvaluationStateHandler<Evaluation>;
-
-        Assert.False(updatedEvaluator.Result);
-    }
-
-    [Theory]
-    [MemberData(nameof(DeterminedYieldingStates))]
+    [ClassData(typeof(StatesOfDeterminedEvaluation))]
     internal void Determined_IsYielded_Correctly(EvaluationState state)
     {
-        var evaluator = IEvaluationStateHandler<Evaluation>.Create() as IEvaluationStateHandler<Evaluation>;
-        var updatedEvaluator = evaluator.WithState(state) as IEvaluationStateHandler<Evaluation>;
+        var evaluator = evaluationFactory.CreateWithState(state);
 
-        Assert.True(updatedEvaluator.IsDetermined);
+        Assert.True(evaluator.IsDetermined);
     }
 }
