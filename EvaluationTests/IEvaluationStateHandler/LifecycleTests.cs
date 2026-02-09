@@ -1,4 +1,5 @@
 ﻿using Evaluation.Enums.Internals;
+using Evaluation.Tests.Common.Data;
 using Evaluation.Tests.IEvaluationStateHandler.Data;
 
 
@@ -10,7 +11,8 @@ public class LifecycleTests
     public static IEnumerable<object[]> ValidTerminationTransitions => EvaluationStates.ValidTerminationTransitions;
 
     public static IEnumerable<object[]> StateResolutionForUninitializedEvaluators => EvaluationStates.ResolvedStatesForUninitializedEvaluators;
-    public static IEnumerable<object[]> ResolvedStatesForInitializedEvaluators => EvaluationStates.ResolvedStatesForInitializedEvaluators;
+    public static TheoryData<(EvaluationState CurrentState, Operation, bool CheckResult, EvaluationState ExpectedState)> StateResolution 
+        => StateResolutions.AllOperationResolutions; 
 
 
     [Fact]
@@ -70,9 +72,9 @@ public class LifecycleTests
     }
 
     [Theory]
-    [MemberData(nameof(ResolvedStatesForInitializedEvaluators))]
+    [MemberData(nameof(StateResolution))]
     internal void DetermineNextState_ReturnsCorrectly_ForInitializedEvaluators(
-        (bool CheckResult, Operation Operation, EvaluationState CurrectState, EvaluationState ExpectedState) data)
+        (EvaluationState CurrectState, Operation Operation, bool CheckResult, EvaluationState ExpectedState) data)
     {
         var evaluator = IEvaluationStateHandler<Evaluator>.Create() as IEvaluationStateHandler<Evaluator>;
         var updatedEvaluator = evaluator.WithState(data.CurrectState) as IEvaluationStateHandler<Evaluator>;
