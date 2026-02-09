@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="src\EvaluatorExtensions\AsyncExtensions\" />
+    <Folder Include="src\EvaluationExtensions\AsyncExtensions\" />
   </ItemGroup>
 
 </Project>

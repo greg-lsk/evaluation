@@ -10,6 +10,6 @@ public abstract class ResolutionDataHolder
     public static IEnumerable<object[]> ValidTerminationTransitions => EvaluationStates.ValidTerminationTransitions;
     public static IEnumerable<object[]> StateResolutionForUninitializedEvaluators => EvaluationStates.ResolvedStatesForUninitializedEvaluators;
 
-    public static TheoryData<(EvaluationState CurrentState, Operation, bool CheckResult, EvaluationState ExpectedState)> 
-        StateResolutionsOnPendingEvaluator => StateResolutions.AllOperationResolutions;
+    public static TheoryData<(EvaluationState CurrentState, Operation, bool CheckResult, EvaluationState ResolvesTo)> 
+        PendingEvaluationAllStateResolutions => PendingEvaluationStateResolutions.AllOperations;
 }

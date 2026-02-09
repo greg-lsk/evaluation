@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include=".Common\Data\StateResolutions.cs" />
+    <Compile Include=".Common\Data\PendingEvaluationStateResolutions.cs" />
   </ItemGroup>
 
   <ItemGroup>

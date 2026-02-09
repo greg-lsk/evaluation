@@ -63,15 +63,15 @@ public class LifecycleTests : ResolutionDataHolder
     }
 
     [Theory]
-    [MemberData(nameof(StateResolutionsOnPendingEvaluator))]
+    [MemberData(nameof(PendingEvaluationAllStateResolutions))]
     internal void DetermineNextState_ReturnsCorrectly_ForInitializedEvaluators(
-        (EvaluationState CurrectState, Operation Operation, bool CheckResult, EvaluationState ExpectedState) data)
+        (EvaluationState CurrectState, Operation Operation, bool CheckResult, EvaluationState ResolvesTo) data)
     {
         var evaluator = IEvaluationStateHandler<Evaluation>.Create() as IEvaluationStateHandler<Evaluation>;
         var updatedEvaluator = evaluator.WithState(data.CurrectState) as IEvaluationStateHandler<Evaluation>;
 
         var state = updatedEvaluator.DetermineNextState(data.Operation, data.CheckResult);
 
-        Assert.Equal(data.ExpectedState, state);
+        Assert.Equal(data.ResolvesTo, state);
     }
 }
