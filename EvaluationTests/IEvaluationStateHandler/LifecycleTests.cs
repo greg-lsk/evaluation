@@ -1,10 +1,12 @@
 ﻿using Evaluation.Enums.Internals;
+using Evaluation.Tests.Common.Fixtures;
 using Evaluation.Tests.IEvaluationStateHandler.Internals;
 
 
 namespace Evaluation.Tests.IEvaluationStateHandler;
 
-public class LifecycleTests : ResolutionDataHolder
+public class LifecycleTests(EvaluationFactoryFixture<Evaluation> _evaluationFactory) 
+    : ResolutionDataHolder, IClassFixture<EvaluationFactoryFixture<Evaluation>>
 {
     [Fact]
     internal void Create_Returns_AnInstance_WithUninitializedState()
@@ -19,22 +21,20 @@ public class LifecycleTests : ResolutionDataHolder
     [MemberData(nameof(ValidInitializedStates))]
     internal void WithState_MakesState_Initialized(EvaluationState state)
     {
-        var evaluator = IEvaluationStateHandler<Evaluation>.Create() as IEvaluationStateHandler<Evaluation>;
+        var evaluator = _evaluationFactory.CreateUninitialized()
+                                          .WithState(state) as IEvaluationStateHandler<Evaluation>;
 
-        var updatedEvaluator = evaluator.WithState(state) as IEvaluationStateHandler<Evaluation>;
-
-        Assert.True(updatedEvaluator.State.IsInitialized());
+        Assert.True(evaluator.State.IsInitialized());
     }
 
     [Theory]
     [MemberData(nameof(ValidInitializedStates))]
     internal void WithState_UpdatesStateCorrectly(EvaluationState state)
     {
-        var evaluator = IEvaluationStateHandler<Evaluation>.Create() as IEvaluationStateHandler<Evaluation>;
+        var evaluator = _evaluationFactory.CreateUninitialized()
+                                          .WithState(state) as IEvaluationStateHandler<Evaluation>;
 
-        var updatedEvaluator = evaluator.WithState(state) as IEvaluationStateHandler<Evaluation>;
-
-        Assert.Equal(state, updatedEvaluator.State);
+        Assert.Equal(state, evaluator.State);
     }
 
 
@@ -42,12 +42,10 @@ public class LifecycleTests : ResolutionDataHolder
     [MemberData(nameof(ValidTerminationTransitions))]
     internal void Terminate_TransitionsState_ToAppropriateDetermined(EvaluationState currectState, EvaluationState expectedState)
     {
-        var evaluator = IEvaluationStateHandler<Evaluation>.Create() as IEvaluationStateHandler<Evaluation>;
-        var updatedEvaluator = evaluator.WithState(currectState) as IEvaluationStateHandler<Evaluation>;
+        var evaluator = _evaluationFactory.CreateWithState(currectState)
+                                          .Terminate() as IEvaluationStateHandler<Evaluation>;
 
-        var terminatedEvaluator = updatedEvaluator.Terminate() as IEvaluationStateHandler<Evaluation>;
-
-        Assert.Equal(expectedState, terminatedEvaluator.State);
+        Assert.Equal(expectedState, evaluator.State);
     }
 
 
@@ -55,9 +53,8 @@ public class LifecycleTests : ResolutionDataHolder
     [MemberData(nameof(StateResolutionForUninitializedEvaluators))]
     internal void DetermineNextState_ReturnsCorrectly_ForUninitializedEvaluators((bool CheckResult, Operation Operation, EvaluationState ExpectedState) data)
     {
-        var evaluator = IEvaluationStateHandler<Evaluation>.Create() as IEvaluationStateHandler<Evaluation>;
-
-        var state = evaluator.DetermineNextState(data.Operation, data.CheckResult);
+        var state = _evaluationFactory.CreateUninitialized()
+                                      .DetermineNextState(data.Operation, data.CheckResult);
 
         Assert.Equal(data.ExpectedState, state);
     }
@@ -67,10 +64,8 @@ public class LifecycleTests : ResolutionDataHolder
     internal void DetermineNextState_ReturnsCorrectly_ForInitializedEvaluators(
         (EvaluationState CurrectState, Operation Operation, bool CheckResult, EvaluationState ResolvesTo) data)
     {
-        var evaluator = IEvaluationStateHandler<Evaluation>.Create() as IEvaluationStateHandler<Evaluation>;
-        var updatedEvaluator = evaluator.WithState(data.CurrectState) as IEvaluationStateHandler<Evaluation>;
-
-        var state = updatedEvaluator.DetermineNextState(data.Operation, data.CheckResult);
+        var state = _evaluationFactory.CreateWithState(data.CurrectState)
+                                      .DetermineNextState(data.Operation, data.CheckResult);
 
         Assert.Equal(data.ResolvesTo, state);
     }
