@@ -4,28 +4,28 @@ using Evaluation.Internal.Resolution;
 
 namespace Evaluation;
 
-public readonly struct Evaluator : IEvaluationStateHandler<Evaluator>
+public readonly struct Evaluation : IEvaluationStateHandler<Evaluation>
 {
     private readonly EvaluationState _state;
     private bool Result => _state.Is(EvaluationState.True);
 
-    bool IEvaluationStateHandler<Evaluator>.Result => Result;
-    bool IEvaluationStateHandler<Evaluator>.IsDetermined => _state.Is(EvaluationState.Determined);
-    EvaluationState IEvaluationStateHandler<Evaluator>.State => _state;
+    bool IEvaluationStateHandler<Evaluation>.Result => Result;
+    bool IEvaluationStateHandler<Evaluation>.IsDetermined => _state.Is(EvaluationState.Determined);
+    EvaluationState IEvaluationStateHandler<Evaluation>.State => _state;
 
 
-    public Evaluator() { _state = EvaluationState.Uninitialized; }
-    private Evaluator(EvaluationState state) { _state = state; }
+    public Evaluation() { _state = EvaluationState.Uninitialized; }
+    private Evaluation(EvaluationState state) { _state = state; }
 
-    Evaluator IEvaluationStateHandler<Evaluator>.WithState(EvaluationState state) => new(state);
-    Evaluator IEvaluationStateHandler<Evaluator>.Terminate() => Result switch
+    Evaluation IEvaluationStateHandler<Evaluation>.WithState(EvaluationState state) => new(state);
+    Evaluation IEvaluationStateHandler<Evaluation>.Terminate() => Result switch
     {
         true =>  new(EvaluationState.True | EvaluationState.Determined),
         false => new(EvaluationState.False | EvaluationState.Determined)
     };
 
 
-    EvaluationState IEvaluationStateHandler<Evaluator>.DetermineNextState(Operation operation, bool checkResult)
+    EvaluationState IEvaluationStateHandler<Evaluation>.DetermineNextState(Operation operation, bool checkResult)
     {
         if (IResolver.EvaluationBecomesDetermined(checkResult, operation)) return EvaluationState.False | EvaluationState.Determined;
 

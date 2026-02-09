@@ -14,8 +14,8 @@ public class PropertyTests
     [MemberData(nameof(TrueYieldingStates))]
     internal void Result_YieldsTrue_Correctly(EvaluationState state)
     {
-        var evaluator = IEvaluationStateHandler<Evaluator>.Create() as IEvaluationStateHandler<Evaluator>;
-        var updatedEvaluator = evaluator.WithState(state) as IEvaluationStateHandler<Evaluator>;
+        var evaluator = IEvaluationStateHandler<Evaluation>.Create() as IEvaluationStateHandler<Evaluation>;
+        var updatedEvaluator = evaluator.WithState(state) as IEvaluationStateHandler<Evaluation>;
 
         Assert.True(updatedEvaluator.Result);
     }
@@ -24,8 +24,8 @@ public class PropertyTests
     [MemberData(nameof(FalseYieldingStates))]
     internal void Result_YieldsFalse_Correctly(EvaluationState state)
     {
-        var evaluator = IEvaluationStateHandler<Evaluator>.Create() as IEvaluationStateHandler<Evaluator>;
-        var updatedEvaluator = evaluator.WithState(state) as IEvaluationStateHandler<Evaluator>;
+        var evaluator = IEvaluationStateHandler<Evaluation>.Create() as IEvaluationStateHandler<Evaluation>;
+        var updatedEvaluator = evaluator.WithState(state) as IEvaluationStateHandler<Evaluation>;
 
         Assert.False(updatedEvaluator.Result);
     }
@@ -34,8 +34,8 @@ public class PropertyTests
     [MemberData(nameof(DeterminedYieldingStates))]
     internal void Determined_IsYielded_Correctly(EvaluationState state)
     {
-        var evaluator = IEvaluationStateHandler<Evaluator>.Create() as IEvaluationStateHandler<Evaluator>;
-        var updatedEvaluator = evaluator.WithState(state) as IEvaluationStateHandler<Evaluator>;
+        var evaluator = IEvaluationStateHandler<Evaluation>.Create() as IEvaluationStateHandler<Evaluation>;
+        var updatedEvaluator = evaluator.WithState(state) as IEvaluationStateHandler<Evaluation>;
 
         Assert.True(updatedEvaluator.IsDetermined);
     }
