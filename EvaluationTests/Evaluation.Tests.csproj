@@ -11,6 +11,12 @@
     <Compile Include=".Common\Data\PendingEvaluationStateResolutions.cs" />
     <Compile Include=".Common\Fixtures\EvaluationFactoryFixture.cs" />
     <Compile Include=".Common\Stubs\DataStub.cs" />
+    <Compile Include=".Common\Utills\TheoryDataExtensions.cs" />
+    <Compile Include="EvaluationExtensions\Data\.Abstract\IResolutionDataMapper.cs" />
+    <Compile Include="EvaluationExtensions\Data\.Abstract\EvaluationExtensionsResolutionData.cs" />
+    <Compile Include="EvaluationExtensions\Data\.Abstract\OnNoDataResolution.cs" />
+    <Compile Include="EvaluationExtensions\Data\.Abstract\OnRefTypeResolution.cs" />
+    <Compile Include="EvaluationExtensions\Data\.Abstract\OnValueTypeResolution.cs" />
   </ItemGroup>
 
   <ItemGroup>
