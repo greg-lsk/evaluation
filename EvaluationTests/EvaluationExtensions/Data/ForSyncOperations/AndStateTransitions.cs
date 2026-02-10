@@ -1,49 +1,22 @@
 ﻿using Evaluation.Tests.Common.Data;
 using Evaluation.Tests.Common.Stubs;
-using Evaluation.Tests.EvaluationExtensions.Stubs;
+using Evaluation.Tests.Common.Utills;
+using Evaluation.Tests.EvaluationExtensions.Data.Abstract;
 
 
 namespace Evaluation.Tests.EvaluationExtensions.Data.ForSyncOperations;
 
-public class AndOperationNoDataSync : TheoryData<(EvaluationState CurrentState, Check Rule, EvaluationState ResolvesTo)>
+public class AndOperationNoDataSync : OnNoDataResolution
 {
-    public AndOperationNoDataSync()
-    {
-        foreach (var tuple in PendingEvaluationStateResolutions.AndOperations) Add(
-        (
-            tuple.CurrentState, 
-            tuple.CheckResult ? CheckStubs.CheckTrue : CheckStubs.CheckFalse, 
-            tuple.ResolvesTo
-        ));
-    }
+    public AndOperationNoDataSync() => PendingEvaluationStateResolutions.AndOperations.Select(MapFrom, Add);   
 }
 
-public class AndOperationRefTypeDataSync 
-    : TheoryData<(EvaluationState CurrentState, Check<DataStub> Rule, DataStub Data, EvaluationState ResolvesTo)>
+public class AndOperationRefTypeDataSync : OnRefTypeResolution<DataStub>
 {
-    public AndOperationRefTypeDataSync()
-    {
-        foreach (var tuple in PendingEvaluationStateResolutions.AndOperations) Add(
-        (
-            tuple.CurrentState,
-            tuple.CheckResult ? CheckStubs.CheckTrue : CheckStubs.CheckFalse,
-            new(),
-            tuple.ResolvesTo
-        ));
-    }
+    public AndOperationRefTypeDataSync() => PendingEvaluationStateResolutions.AndOperations.Select(MapFrom, Add);
 }
 
-public class AndOperationValueTypeDataSync
-    : TheoryData<(EvaluationState CurrentState, CheckOnStruct<int> Rule, int Data, EvaluationState ResolvesTo)>
+public class AndOperationValueTypeDataSync : OnValueTypeResolution<int>
 {
-    public AndOperationValueTypeDataSync()
-    {
-        foreach (var tuple in PendingEvaluationStateResolutions.AndOperations) Add(
-        (
-            tuple.CurrentState,
-            tuple.CheckResult ? CheckStubs.CheckTrue : CheckStubs.CheckFalse,
-            default,
-            tuple.ResolvesTo
-        ));
-    }
+    public AndOperationValueTypeDataSync() => PendingEvaluationStateResolutions.AndOperations.Select(MapFrom, Add);
 }
