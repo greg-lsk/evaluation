@@ -1,6 +1,7 @@
 ﻿using Evaluation.Tests.Common.Stubs;
 using Evaluation.Tests.Common.Fixtures;
 using Evaluation.Tests.EvaluationExtensions.Data.ForSyncOperations;
+using Evaluation.Tests.EvaluationExtensions.Utils;
 
 
 namespace Evaluation.Tests.EvaluationExtensions.SyncOperations;
@@ -13,9 +14,10 @@ public class AndExtensions(EvaluationFactoryFixture<Evaluation> evaluationFactor
     internal void AndAsync_OnNoData_UpdatesStateCorrectly(
         (EvaluationState CurrentState, Check Check, EvaluationState ResolvesTo) data)
     {
-        var evaluation = ((Evaluation)evaluationFactory.CreateWithState(data.CurrentState)).And(data.Check);
+        var evaluation = evaluationFactory.CreateWithState(data.CurrentState)
+                                          .RunExtension(e => e.And(data.Check));
 
-        Assert.Equal(data.ResolvesTo, (evaluation as IEvaluationStateHandler<Evaluation>).State);
+        Assert.Equal(data.ResolvesTo, evaluation.State);
     }
 
     [Theory]
@@ -23,9 +25,10 @@ public class AndExtensions(EvaluationFactoryFixture<Evaluation> evaluationFactor
     internal void AndAsync_OnRefTypeData_UpdatesStateCorrectly(
         (EvaluationState CurrentState, Check<DataStub> Check, DataStub CheckData, EvaluationState ResolvesTo) data)
     {
-        var evaluation = ((Evaluation)evaluationFactory.CreateWithState(data.CurrentState)).And(data.Check, data.CheckData);
+        var evaluation = evaluationFactory.CreateWithState(data.CurrentState)
+                                          .RunExtension(e => e.And(data.Check, data.CheckData));
 
-        Assert.Equal(data.ResolvesTo, (evaluation as IEvaluationStateHandler<Evaluation>).State);
+        Assert.Equal(data.ResolvesTo, evaluation.State);
     }
 
     [Theory]
@@ -33,8 +36,9 @@ public class AndExtensions(EvaluationFactoryFixture<Evaluation> evaluationFactor
     internal void AndAsync_OnValueTypeData_UpdatesStateCorrectly(
         (EvaluationState CurrentState, CheckOnStruct<int> Check, int CheckData, EvaluationState ResolvesTo) data)
     {
-        var evaluation = ((Evaluation)evaluationFactory.CreateWithState(data.CurrentState)).And(data.Check, data.CheckData);
+        var evaluation = evaluationFactory.CreateWithState(data.CurrentState)
+                                          .RunExtension(e => e.And(data.Check, data.CheckData));
 
-        Assert.Equal(data.ResolvesTo, (evaluation as IEvaluationStateHandler<Evaluation>).State);
+        Assert.Equal(data.ResolvesTo, evaluation.State);
     }
 }
