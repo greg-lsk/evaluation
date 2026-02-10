@@ -1,4 +1,4 @@
-﻿using Evaluation.Tests.ReportingTests.Stubs;
+﻿using Evaluation.Tests.Common.Stubs;
 using Evaluation.Tests.ReportingTests.Fixtures;
 using Evaluation.Tests.ReportingTests.Internals;
 
