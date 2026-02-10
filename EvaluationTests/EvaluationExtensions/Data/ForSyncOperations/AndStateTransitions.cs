@@ -19,7 +19,7 @@ public class AndOperationNoDataSync : TheoryData<(EvaluationState CurrentState, 
 }
 
 public class AndOperationRefTypeDataSync 
-    : TheoryData<(EvaluationState CurrentState, Check<ReportDataStub> Rule, ReportDataStub Data, EvaluationState ResolvesTo)>
+    : TheoryData<(EvaluationState CurrentState, Check<DataStub> Rule, DataStub Data, EvaluationState ResolvesTo)>
 {
     public AndOperationRefTypeDataSync()
     {

@@ -21,7 +21,7 @@ public class AndExtensions(EvaluationFactoryFixture<Evaluation> evaluationFactor
     [Theory]
     [ClassData(typeof(AndOperationRefTypeDataSync))]
     internal void AndAsync_OnRefTypeData_UpdatesStateCorrectly(
-        (EvaluationState CurrentState, Check<ReportDataStub> Check, ReportDataStub CheckData, EvaluationState ResolvesTo) data)
+        (EvaluationState CurrentState, Check<DataStub> Check, DataStub CheckData, EvaluationState ResolvesTo) data)
     {
         var evaluation = ((Evaluation)evaluationFactory.CreateWithState(data.CurrentState)).And(data.Check, data.CheckData);
 

@@ -10,7 +10,7 @@
   <ItemGroup>
     <Compile Include=".Common\Data\PendingEvaluationStateResolutions.cs" />
     <Compile Include=".Common\Fixtures\EvaluationFactoryFixture.cs" />
-    <Compile Include=".Common\Stubs\ReportDataStub.cs" />
+    <Compile Include=".Common\Stubs\DataStub.cs" />
   </ItemGroup>
 
   <ItemGroup>

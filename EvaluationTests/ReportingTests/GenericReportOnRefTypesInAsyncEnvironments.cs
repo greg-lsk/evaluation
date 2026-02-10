@@ -8,16 +8,16 @@ namespace Evaluation.Tests.ReportingTests;
 public class GenericReportOnRefTypesInAsyncEnvironments
 (
     AssessementFixture assessmentFixture,
-    AsyncEnvironmentFixture<ReportDataStub> asyncEnvironmentFixture
+    AsyncEnvironmentFixture<DataStub> asyncEnvironmentFixture
 )
-    : IClassFixture<AssessementFixture>, IClassFixture<AsyncEnvironmentFixture<ReportDataStub>>
+    : IClassFixture<AssessementFixture>, IClassFixture<AsyncEnvironmentFixture<DataStub>>
 {
     [Fact]
     internal async Task Report_MustPreserveState_AcrossAsyncCalls()
     {
-        var data = new ReportDataStub(5);
+        var data = new DataStub(5);
         var assessment = assessmentFixture.CreateStub();
-        var report = new Report<ReportDataStub>(ref data, ref assessment);
+        var report = new Report<DataStub>(ref data, ref assessment);
 
         await asyncEnvironmentFixture.GenericReportHandlingAsync(report);
 
@@ -28,9 +28,9 @@ public class GenericReportOnRefTypesInAsyncEnvironments
     [Fact]
     internal async Task Report_MustPreserveState_WhenHandledIn_AwaitedAsyncCalls()
     {
-        var data = new ReportDataStub(5);
+        var data = new DataStub(5);
         var assessment = assessmentFixture.CreateStub();
-        var report = new Report<ReportDataStub>(ref data, ref assessment);
+        var report = new Report<DataStub>(ref data, ref assessment);
 
         var echoedData = await asyncEnvironmentFixture.GenericReportDataEchoAsync(report);
 
