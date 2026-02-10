@@ -1,7 +1,7 @@
 ﻿using Evaluation.Tests.Common.Stubs;
 using Evaluation.Tests.Common.Fixtures;
-using Evaluation.Tests.EvaluationExtensions.Data.ForSyncOperations;
 using Evaluation.Tests.EvaluationExtensions.Utils;
+using Evaluation.Tests.EvaluationExtensions.Data.ForSyncOperations;
 
 
 namespace Evaluation.Tests.EvaluationExtensions.SyncOperations;
@@ -11,7 +11,7 @@ public class AndExtensions(EvaluationFactoryFixture<Evaluation> evaluationFactor
 {
     [Theory]
     [ClassData(typeof(AndOperationNoDataSync))]
-    internal void AndAsync_OnNoData_UpdatesStateCorrectly(
+    internal void And_OnNoData_UpdatesStateCorrectly(
         (EvaluationState CurrentState, Check Check, EvaluationState ResolvesTo) data)
     {
         var evaluation = evaluationFactory.CreateWithState(data.CurrentState)
@@ -22,7 +22,7 @@ public class AndExtensions(EvaluationFactoryFixture<Evaluation> evaluationFactor
 
     [Theory]
     [ClassData(typeof(AndOperationRefTypeDataSync))]
-    internal void AndAsync_OnRefTypeData_UpdatesStateCorrectly(
+    internal void And_OnRefTypeData_UpdatesStateCorrectly(
         (EvaluationState CurrentState, Check<DataStub> Check, DataStub CheckData, EvaluationState ResolvesTo) data)
     {
         var evaluation = evaluationFactory.CreateWithState(data.CurrentState)
@@ -33,7 +33,7 @@ public class AndExtensions(EvaluationFactoryFixture<Evaluation> evaluationFactor
 
     [Theory]
     [ClassData(typeof(AndOperationValueTypeDataSync))]
-    internal void AndAsync_OnValueTypeData_UpdatesStateCorrectly(
+    internal void And_OnValueTypeData_UpdatesStateCorrectly(
         (EvaluationState CurrentState, CheckOnStruct<int> Check, int CheckData, EvaluationState ResolvesTo) data)
     {
         var evaluation = evaluationFactory.CreateWithState(data.CurrentState)
