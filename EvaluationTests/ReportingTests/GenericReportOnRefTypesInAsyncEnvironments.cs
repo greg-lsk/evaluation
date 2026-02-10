@@ -15,7 +15,7 @@ public class GenericReportOnRefTypesInAsyncEnvironments
     [Fact]
     internal async Task Report_MustPreserveState_AcrossAsyncCalls()
     {
-        var data = new DataStub(5);
+        var data = new DataStub();
         var assessment = assessmentFixture.CreateStub();
         var report = new Report<DataStub>(ref data, ref assessment);
 
@@ -28,7 +28,7 @@ public class GenericReportOnRefTypesInAsyncEnvironments
     [Fact]
     internal async Task Report_MustPreserveState_WhenHandledIn_AwaitedAsyncCalls()
     {
-        var data = new DataStub(5);
+        var data = new DataStub();
         var assessment = assessmentFixture.CreateStub();
         var report = new Report<DataStub>(ref data, ref assessment);
 
