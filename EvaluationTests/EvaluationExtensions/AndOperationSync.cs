@@ -1,16 +1,16 @@
 ﻿using Evaluation.Tests.Common.Stubs;
 using Evaluation.Tests.Common.Fixtures;
+using Evaluation.Tests.EvaluationExtensions.Data;
 using Evaluation.Tests.EvaluationExtensions.Utils;
-using Evaluation.Tests.EvaluationExtensions.Data.ForSyncOperations;
 
 
-namespace Evaluation.Tests.EvaluationExtensions.SyncOperations;
+namespace Evaluation.Tests.EvaluationExtensions;
 
-public class AndExtensions(EvaluationFactoryFixture<Evaluation> evaluationFactory)
+public class AndOperationSync(EvaluationFactoryFixture<Evaluation> evaluationFactory)
     : IClassFixture<EvaluationFactoryFixture<Evaluation>>
 {
     [Theory]
-    [ClassData(typeof(AndOperationNoDataSync))]
+    [ClassData(typeof(OnNoDataAndOperation))]
     internal void And_OnNoData_UpdatesStateCorrectly(
         (EvaluationState CurrentState, Check Check, EvaluationState ResolvesTo) data)
     {
@@ -21,7 +21,7 @@ public class AndExtensions(EvaluationFactoryFixture<Evaluation> evaluationFactor
     }
 
     [Theory]
-    [ClassData(typeof(AndOperationRefTypeDataSync))]
+    [ClassData(typeof(OnRefTypeAndOperation))]
     internal void And_OnRefTypeData_UpdatesStateCorrectly(
         (EvaluationState CurrentState, Check<DataStub> Check, DataStub CheckData, EvaluationState ResolvesTo) data)
     {
@@ -32,7 +32,7 @@ public class AndExtensions(EvaluationFactoryFixture<Evaluation> evaluationFactor
     }
 
     [Theory]
-    [ClassData(typeof(AndOperationValueTypeDataSync))]
+    [ClassData(typeof(OnValueTypeAndOperation))]
     internal void And_OnValueTypeData_UpdatesStateCorrectly(
         (EvaluationState CurrentState, CheckOnStruct<int> Check, int CheckData, EvaluationState ResolvesTo) data)
     {

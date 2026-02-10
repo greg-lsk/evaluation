@@ -12,11 +12,24 @@
     <Compile Include=".Common\Fixtures\EvaluationFactoryFixture.cs" />
     <Compile Include=".Common\Stubs\DataStub.cs" />
     <Compile Include=".Common\Utills\TheoryDataExtensions.cs" />
-    <Compile Include="EvaluationExtensions\Data\.Abstract\IResolutionDataMapper.cs" />
-    <Compile Include="EvaluationExtensions\Data\.Abstract\EvaluationExtensionsResolutionData.cs" />
-    <Compile Include="EvaluationExtensions\Data\.Abstract\OnNoDataResolution.cs" />
-    <Compile Include="EvaluationExtensions\Data\.Abstract\OnRefTypeResolution.cs" />
-    <Compile Include="EvaluationExtensions\Data\.Abstract\OnValueTypeResolution.cs" />
+    <Compile Include="EvaluationExtensions\.Data\AndOperationStateTransitions.cs" />
+    <Compile Include="EvaluationExtensions\.Data\.Abstract\IResolutionDataMapper.cs" />
+    <Compile Include="EvaluationExtensions\.Data\.Abstract\EvaluationExtensionsResolutionData.cs" />
+    <Compile Include="EvaluationExtensions\.Data\.Abstract\OnNoDataResolution.cs" />
+    <Compile Include="EvaluationExtensions\.Data\.Abstract\OnRefTypeResolution.cs" />
+    <Compile Include="EvaluationExtensions\.Data\.Abstract\OnValueTypeResolution.cs" />
+    <Compile Include="EvaluationExtensions\.Stubs\CheckStubs.cs" />
+    <Compile Include="EvaluationExtensions\.Utils\IEvaluationStateHandlerExtensions.cs" />
+    <Compile Include="IEvaluationStateHandler\.Data\EvaluationStates.cs" />
+    <Compile Include="IEvaluationStateHandler\.Data\PendingToDeterminedMapping.cs" />
+    <Compile Include="IEvaluationStateHandler\.Data\StatesOfDeterminedEvaluation.cs" />
+    <Compile Include="IEvaluationStateHandler\.Data\StatesOfInitializedEvaluation.cs" />
+    <Compile Include="IEvaluationStateHandler\.Data\StateToResultMapping.cs" />
+    <Compile Include="IEvaluationStateHandler\.Abstracts\ResolutionDataHolder.cs" />
+    <Compile Include="IResolverTests\.Data\ResolutionData.cs" />
+    <Compile Include="ReportingTests\.Fixtures\AssessementFixture.cs" />
+    <Compile Include="ReportingTests\.Fixtures\AsyncEnvironmentFixture.cs" />
+    <Compile Include="ReportingTests\.Internals\IAssessementComparer.cs" />
   </ItemGroup>
 
   <ItemGroup>

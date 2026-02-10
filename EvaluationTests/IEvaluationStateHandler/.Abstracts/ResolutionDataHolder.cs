@@ -2,7 +2,7 @@
 using Evaluation.Tests.IEvaluationStateHandler.Data;
 
 
-namespace Evaluation.Tests.IEvaluationStateHandler.Internals;
+namespace Evaluation.Tests.IEvaluationStateHandler.Abstracts;
 
 public abstract class ResolutionDataHolder
 {

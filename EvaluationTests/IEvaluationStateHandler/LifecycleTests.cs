@@ -1,7 +1,7 @@
 ﻿using Evaluation.Enums.Internals;
 using Evaluation.Tests.Common.Fixtures;
 using Evaluation.Tests.IEvaluationStateHandler.Data;
-using Evaluation.Tests.IEvaluationStateHandler.Internals;
+using Evaluation.Tests.IEvaluationStateHandler.Abstracts;
 
 
 namespace Evaluation.Tests.IEvaluationStateHandler;
