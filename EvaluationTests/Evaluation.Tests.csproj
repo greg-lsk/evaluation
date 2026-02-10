@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include=".Common\Data\PendingEvaluationStateResolutions.cs" />
-    <Compile Include=".Common\Fixtures\EvaluationFactoryFixture.cs" />
+    <Compile Include=".Common\Fixtures\EvaluationFixture.cs" />
     <Compile Include=".Common\Stubs\DataStub.cs" />
     <Compile Include=".Common\Utills\TheoryDataExtensions.cs" />
     <Compile Include="EvaluationExtensions\.Data\AndOperationStateTransitions.cs" />
@@ -18,7 +18,7 @@
     <Compile Include="EvaluationExtensions\.Data\.Abstract\OnNoDataResolution.cs" />
     <Compile Include="EvaluationExtensions\.Data\.Abstract\OnRefTypeResolution.cs" />
     <Compile Include="EvaluationExtensions\.Data\.Abstract\OnValueTypeResolution.cs" />
-    <Compile Include="EvaluationExtensions\.Stubs\CheckStubs.cs" />
+    <Compile Include="EvaluationExtensions\.Stubs\CheckStub.cs" />
     <Compile Include="EvaluationExtensions\.Utils\IEvaluationStateHandlerExtensions.cs" />
     <Compile Include="IEvaluationStateHandler\.Data\EvaluationStates.cs" />
     <Compile Include="IEvaluationStateHandler\.Data\PendingToDeterminedMapping.cs" />

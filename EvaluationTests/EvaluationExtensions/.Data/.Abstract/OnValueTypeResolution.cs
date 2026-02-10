@@ -9,7 +9,7 @@ public abstract class OnValueTypeResolution<D> : EvaluationExtensionsResolutionD
     public override Func<D> DataProvider => () => default;
     public override Func<bool, CheckOnStruct<D>> CheckSwitch => b => b switch
     {
-        true => CheckStubs.CheckTrue,
-        false => CheckStubs.CheckFalse
+        true  => CheckStub.ChecksTrue,
+        false => CheckStub.ChecksFalse
     };
 }

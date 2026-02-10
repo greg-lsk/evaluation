@@ -9,7 +9,7 @@ public abstract class OnRefTypeResolution<D> : EvaluationExtensionsResolutionDat
     public override Func<D> DataProvider => () => new();
     public override Func<bool, Check<D>> CheckSwitch => b => b switch
     {
-        true => CheckStubs.CheckTrue,
-        false => CheckStubs.CheckFalse
+        true  => CheckStub.ChecksTrue,
+        false => CheckStub.ChecksFalse
     };
 }

@@ -6,8 +6,8 @@ using Evaluation.Tests.IEvaluationStateHandler.Abstracts;
 
 namespace Evaluation.Tests.IEvaluationStateHandler;
 
-public class LifecycleTests(EvaluationFactoryFixture<Evaluation> _evaluationFactory) 
-    : ResolutionDataHolder, IClassFixture<EvaluationFactoryFixture<Evaluation>>
+public class LifecycleTests(EvaluationFixture<Evaluation> evaluationFixture) 
+    : ResolutionDataHolder, IClassFixture<EvaluationFixture<Evaluation>>
 {
     [Fact]
     internal void Create_Returns_AnInstance_WithUninitializedState()
@@ -22,8 +22,8 @@ public class LifecycleTests(EvaluationFactoryFixture<Evaluation> _evaluationFact
     [ClassData(typeof(StatesOfInitializedEvaluation))]
     internal void WithState_MakesState_Initialized(EvaluationState state)
     {
-        var evaluation = _evaluationFactory.CreateUninitialized()
-                                           .WithState(state) as IEvaluationStateHandler<Evaluation>;
+        var evaluation = evaluationFixture.CreateUninitialized()
+                                          .WithState(state) as IEvaluationStateHandler<Evaluation>;
 
         Assert.True(evaluation.State.IsInitialized());
     }
@@ -32,8 +32,8 @@ public class LifecycleTests(EvaluationFactoryFixture<Evaluation> _evaluationFact
     [ClassData(typeof(StatesOfInitializedEvaluation))]
     internal void WithState_UpdatesStateCorrectly(EvaluationState state)
     {
-        var evaluation = _evaluationFactory.CreateUninitialized()
-                                           .WithState(state) as IEvaluationStateHandler<Evaluation>;
+        var evaluation = evaluationFixture.CreateUninitialized()
+                                          .WithState(state) as IEvaluationStateHandler<Evaluation>;
 
         Assert.Equal(state, evaluation.State);
     }
@@ -43,8 +43,8 @@ public class LifecycleTests(EvaluationFactoryFixture<Evaluation> _evaluationFact
     [ClassData(typeof(PendingToDeterminedMapping))]
     internal void Terminate_TransitionsState_ToAppropriateDetermined((EvaluationState Currect, EvaluationState AppropriateDetermined) stateMap)
     {
-        var evaluation = _evaluationFactory.CreateWithState(stateMap.Currect)
-                                           .Terminate() as IEvaluationStateHandler<Evaluation>;
+        var evaluation = evaluationFixture.CreateWithState(stateMap.Currect)
+                                          .Terminate() as IEvaluationStateHandler<Evaluation>;
 
         Assert.Equal(stateMap.AppropriateDetermined, evaluation.State);
     }
@@ -54,8 +54,8 @@ public class LifecycleTests(EvaluationFactoryFixture<Evaluation> _evaluationFact
     [MemberData(nameof(StateResolutionForUninitializedEvaluations))]
     internal void DetermineNextState_ReturnsCorrectly_ForUninitializedevaluations((bool CheckResult, Operation Operation, EvaluationState ExpectedState) data)
     {
-        var state = _evaluationFactory.CreateUninitialized()
-                                      .DetermineNextState(data.Operation, data.CheckResult);
+        var state = evaluationFixture.CreateUninitialized()
+                                     .DetermineNextState(data.Operation, data.CheckResult);
 
         Assert.Equal(data.ExpectedState, state);
     }
@@ -65,8 +65,8 @@ public class LifecycleTests(EvaluationFactoryFixture<Evaluation> _evaluationFact
     internal void DetermineNextState_ReturnsCorrectly_ForInitializedevaluations(
         (EvaluationState CurrectState, Operation Operation, bool CheckResult, EvaluationState ResolvesTo) data)
     {
-        var state = _evaluationFactory.CreateWithState(data.CurrectState)
-                                      .DetermineNextState(data.Operation, data.CheckResult);
+        var state = evaluationFixture.CreateWithState(data.CurrectState)
+                                     .DetermineNextState(data.Operation, data.CheckResult);
 
         Assert.Equal(data.ResolvesTo, state);
     }

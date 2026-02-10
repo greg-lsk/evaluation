@@ -7,7 +7,7 @@ public abstract class OnNoDataResolution : EvaluationExtensionsResolutionData<Ch
 {
     public override Func<bool, Check> CheckSwitch => b => b switch
     {
-        true => CheckStubs.CheckTrue,
-        false => CheckStubs.CheckFalse
+        true  => CheckStub.ChecksTrue,
+        false => CheckStub.ChecksFalse
     };
 }

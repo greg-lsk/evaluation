@@ -4,8 +4,8 @@ using Evaluation.Tests.IEvaluationStateHandler.Data;
 
 namespace Evaluation.Tests.IEvaluationStateHandler;
 
-public class PropertyTests(EvaluationFactoryFixture<Evaluation> evaluationFactory) 
-    : IClassFixture<EvaluationFactoryFixture<Evaluation>>
+public class PropertyTests(EvaluationFixture<Evaluation> evaluationFactory) 
+    : IClassFixture<EvaluationFixture<Evaluation>>
 {
     [Theory]
     [ClassData(typeof(StateToResultMapping))]

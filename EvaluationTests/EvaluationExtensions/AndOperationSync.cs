@@ -6,15 +6,14 @@ using Evaluation.Tests.EvaluationExtensions.Utils;
 
 namespace Evaluation.Tests.EvaluationExtensions;
 
-public class AndOperationSync(EvaluationFactoryFixture<Evaluation> evaluationFactory)
-    : IClassFixture<EvaluationFactoryFixture<Evaluation>>
+public class AndOperationSync(EvaluationFixture<Evaluation> evaluationFixture) : IClassFixture<EvaluationFixture<Evaluation>>
 {
     [Theory]
     [ClassData(typeof(OnNoDataAndOperation))]
     internal void And_OnNoData_UpdatesStateCorrectly(
         (EvaluationState CurrentState, Check Check, EvaluationState ResolvesTo) data)
     {
-        var evaluation = evaluationFactory.CreateWithState(data.CurrentState)
+        var evaluation = evaluationFixture.CreateWithState(data.CurrentState)
                                           .RunExtension(e => e.And(data.Check));
 
         Assert.Equal(data.ResolvesTo, evaluation.State);
@@ -25,7 +24,7 @@ public class AndOperationSync(EvaluationFactoryFixture<Evaluation> evaluationFac
     internal void And_OnRefTypeData_UpdatesStateCorrectly(
         (EvaluationState CurrentState, Check<DataStub> Check, DataStub CheckData, EvaluationState ResolvesTo) data)
     {
-        var evaluation = evaluationFactory.CreateWithState(data.CurrentState)
+        var evaluation = evaluationFixture.CreateWithState(data.CurrentState)
                                           .RunExtension(e => e.And(data.Check, data.CheckData));
 
         Assert.Equal(data.ResolvesTo, evaluation.State);
@@ -36,7 +35,7 @@ public class AndOperationSync(EvaluationFactoryFixture<Evaluation> evaluationFac
     internal void And_OnValueTypeData_UpdatesStateCorrectly(
         (EvaluationState CurrentState, CheckOnStruct<int> Check, int CheckData, EvaluationState ResolvesTo) data)
     {
-        var evaluation = evaluationFactory.CreateWithState(data.CurrentState)
+        var evaluation = evaluationFixture.CreateWithState(data.CurrentState)
                                           .RunExtension(e => e.And(data.Check, data.CheckData));
 
         Assert.Equal(data.ResolvesTo, evaluation.State);
