@@ -1,7 +1,7 @@
 ﻿using Evaluation.Reporting.Internals;
 
 
-namespace Evaluation.Tests.ReportingTests.Internals;
+namespace Evaluation.Tests.Reporting.Internals;
 
 internal interface IAssessementComparer
 {

@@ -1,7 +1,7 @@
-﻿using Evaluation.Tests.ReportingTests.Fixtures;
+﻿using Evaluation.Tests.Reporting.Fixtures;
 
 
-namespace Evaluation.Tests.ReportingTests;
+namespace Evaluation.Tests.Reporting;
 
 public class ReportEqualityTests(AssessementFixture assessementFixture) : IClassFixture<AssessementFixture>
 {

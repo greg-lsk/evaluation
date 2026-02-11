@@ -26,10 +26,10 @@
     <Compile Include="EvaluationStateHandling\.Data\StatesOfInitializedEvaluation.cs" />
     <Compile Include="EvaluationStateHandling\.Data\StateToResultMapping.cs" />
     <Compile Include="EvaluationStateHandling\.Abstracts\ResolutionDataHolder.cs" />
-    <Compile Include="IResolverTests\.Data\ResolutionData.cs" />
-    <Compile Include="ReportingTests\.Fixtures\AssessementFixture.cs" />
-    <Compile Include="ReportingTests\.Fixtures\AsyncEnvironmentFixture.cs" />
-    <Compile Include="ReportingTests\.Internals\IAssessementComparer.cs" />
+    <Compile Include="Resolution\.Data\ResolutionData.cs" />
+    <Compile Include="Reporting\.Fixtures\AssessementFixture.cs" />
+    <Compile Include="Reporting\.Fixtures\AsyncEnvironmentFixture.cs" />
+    <Compile Include="Reporting\.Internals\IAssessementComparer.cs" />
   </ItemGroup>
 
   <ItemGroup>

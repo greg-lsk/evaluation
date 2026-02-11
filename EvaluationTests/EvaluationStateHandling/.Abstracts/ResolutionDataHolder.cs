@@ -1,8 +1,8 @@
 ﻿using Evaluation.Tests.Common.Data;
-using Evaluation.Tests.IEvaluationStateHandler.Data;
+using Evaluation.Tests.EvaluationStateHandling.Data;
 
 
-namespace Evaluation.Tests.IEvaluationStateHandler.Abstracts;
+namespace Evaluation.Tests.EvaluationStateHandling.Abstracts;
 
 public abstract class ResolutionDataHolder
 {

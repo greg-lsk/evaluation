@@ -1,8 +1,8 @@
-﻿using Evaluation.Tests.ReportingTests.Fixtures;
-using Evaluation.Tests.ReportingTests.Internals;
+﻿using Evaluation.Tests.Reporting.Fixtures;
+using Evaluation.Tests.Reporting.Internals;
 
 
-namespace Evaluation.Tests.ReportingTests;
+namespace Evaluation.Tests.Reporting;
 
 public class SimpleReportInAsyncEnvironments(AssessementFixture assessmentFixture) : IClassFixture<AssessementFixture>
 {

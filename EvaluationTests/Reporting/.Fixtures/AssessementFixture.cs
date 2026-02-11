@@ -1,7 +1,7 @@
 ﻿using Evaluation.Reporting.Internals;
 
 
-namespace Evaluation.Tests.ReportingTests.Fixtures;
+namespace Evaluation.Tests.Reporting.Fixtures;
 
 public class AssessementFixture
 {

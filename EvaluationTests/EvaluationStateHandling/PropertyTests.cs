@@ -1,8 +1,8 @@
 ﻿using Evaluation.Tests.Common.Fixtures;
-using Evaluation.Tests.IEvaluationStateHandler.Data;
+using Evaluation.Tests.EvaluationStateHandling.Data;
 
 
-namespace Evaluation.Tests.IEvaluationStateHandler;
+namespace Evaluation.Tests.EvaluationStateHandling;
 
 public class PropertyTests(EvaluationFixture<Evaluation> evaluationFactory) 
     : IClassFixture<EvaluationFixture<Evaluation>>

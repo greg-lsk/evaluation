@@ -1,8 +1,8 @@
 ﻿using Evaluation.Internal.Resolution;
-using Evaluation.Tests.IResolverTests.Data;
+using Evaluation.Tests.Resolution.Data;
 
 
-namespace Evaluation.Tests.IResolverTests;
+namespace Evaluation.Tests.Resolution;
 
 public class IResolverTests
 {

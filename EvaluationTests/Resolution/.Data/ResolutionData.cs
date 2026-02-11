@@ -1,4 +1,4 @@
-﻿namespace Evaluation.Tests.IResolverTests.Data;
+﻿namespace Evaluation.Tests.Resolution.Data;
 
 internal class ResolutionData
 {

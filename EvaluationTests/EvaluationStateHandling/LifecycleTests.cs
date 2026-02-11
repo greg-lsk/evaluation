@@ -1,10 +1,10 @@
 ﻿using Evaluation.Enums.Internals;
 using Evaluation.Tests.Common.Fixtures;
-using Evaluation.Tests.IEvaluationStateHandler.Data;
-using Evaluation.Tests.IEvaluationStateHandler.Abstracts;
+using Evaluation.Tests.EvaluationStateHandling.Data;
+using Evaluation.Tests.EvaluationStateHandling.Abstracts;
 
 
-namespace Evaluation.Tests.IEvaluationStateHandler;
+namespace Evaluation.Tests.EvaluationStateHandling;
 
 public class LifecycleTests(EvaluationFixture<Evaluation> evaluationFixture) 
     : ResolutionDataHolder, IClassFixture<EvaluationFixture<Evaluation>>

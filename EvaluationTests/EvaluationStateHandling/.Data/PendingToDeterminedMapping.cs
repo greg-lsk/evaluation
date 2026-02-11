@@ -1,4 +1,4 @@
-﻿namespace Evaluation.Tests.IEvaluationStateHandler.Data;
+﻿namespace Evaluation.Tests.EvaluationStateHandling.Data;
 
 public class PendingToDeterminedMapping : TheoryData<(EvaluationState CurrentPending, EvaluationState MapsTo)>
 {

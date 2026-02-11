@@ -1,4 +1,4 @@
-﻿namespace Evaluation.Tests.IEvaluationStateHandler.Data;
+﻿namespace Evaluation.Tests.EvaluationStateHandling.Data;
 
 public class StateToResultMapping : TheoryData<(EvaluationState State, bool YieldsResult)>
 {
