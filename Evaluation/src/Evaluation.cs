@@ -4,7 +4,7 @@ using Evaluation.Internal.Resolution;
 
 namespace Evaluation;
 
-public readonly struct Evaluation : IEvaluationStateHandler<Evaluation>
+public readonly partial struct Evaluation : IEvaluationStateHandler<Evaluation>
 {
     private readonly EvaluationState _state;
     private bool Result => _state.Is(EvaluationState.True);
