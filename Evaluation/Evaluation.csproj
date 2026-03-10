@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="src\.Internal\Factories\Create.cs" />
     <Compile Include="src\.Internal\Resolution\IResolver.cs" />
+    <Compile Include="src\.Internal\Resolution\Resolver.cs" />
     <Compile Include="src\Enums\.Internals\EvaluationStateExtensions.cs" />
     <Compile Include="src\Reporting\.Internals\Assessement.cs" />
     <Compile Include="src\Reporting\.Internals\IAssessment.cs" />
@@ -23,6 +26,10 @@
 
   <ItemGroup>
     <Folder Include="src\EvaluationExtensions\AsyncExtensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.6.3" />
   </ItemGroup>
 
 </Project>
