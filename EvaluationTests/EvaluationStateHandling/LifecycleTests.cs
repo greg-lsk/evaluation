@@ -1,4 +1,5 @@
 ﻿using Evaluation.Enums.Internals;
+using Evaluation.Internal.Factories;
 using Evaluation.Tests.Common.Fixtures;
 using Evaluation.Tests.EvaluationStateHandling.Data;
 using Evaluation.Tests.EvaluationStateHandling.Abstracts;
@@ -12,7 +13,7 @@ public class LifecycleTests(EvaluationFixture<Evaluation> evaluationFixture)
     [Fact]
     internal void Create_Returns_AnInstance_WithUninitializedState()
     {
-        var evaluation = IEvaluationStateHandler<Evaluation>.Create() as IEvaluationStateHandler<Evaluation>;
+        var evaluation = Create.EvaluationStateHandler<Evaluation>() as IEvaluationStateHandler<Evaluation>;
 
         Assert.False(evaluation.State.IsInitialized());
     }

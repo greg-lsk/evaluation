@@ -1,4 +1,5 @@
 ﻿using Evaluation.Enums.Internals;
+using Evaluation.Internal.Factories;
 using Evaluation.Internal.Resolution;
 
 
@@ -21,11 +22,13 @@ public readonly partial struct Evaluation : IEvaluationStateHandler<Evaluation>
 
     EvaluationState IEvaluationStateHandler<Evaluation>.DetermineNextState(Operation operation, bool checkResult)
     {
-        if (IResolver.EvaluationBecomesDetermined(checkResult, operation)) return EvaluationState.False | EvaluationState.Determined;
+        var resolver = Create.StatelessStruct<Resolver>();
+
+        if (resolver.EvaluationBecomesDetermined(checkResult, operation)) return EvaluationState.False | EvaluationState.Determined;
 
         var state = _state.IsInitialized() switch
         {
-            true =>  IResolver.Resolve(checkResult, operation, Result) ? EvaluationState.True : EvaluationState.False,
+            true => resolver.Resolve(checkResult, operation, Result) ? EvaluationState.True : EvaluationState.False,
             false => checkResult ? EvaluationState.True : EvaluationState.False
         };
 
